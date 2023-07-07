@@ -32,11 +32,11 @@ navLink.forEach(n => n.addEventListener('click', linkAction))
 /*=============== ADD BLUR TO HEADER ===============*/
 const blurHeader = () =>{
    const header = document.getElementById('header')
-   // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
+   // When the scroll is greater than 50 viewport height, add the blur-header class to the header tag
    this.scrollY >= 50 ? header.classList.add('blur-header') 
                       : header.classList.remove('blur-header')
 }
-window.addEventListener('scroll', scrollHeader)
+window.addEventListener('scroll', blurHeader)
 
 /*=============== EMAIL JS ===============*/
 const contactForm = document.getElementById('contact-form'),
@@ -50,6 +50,14 @@ const sendEmail = (e) =>{
       .then(() =>{
          // Show sent message
          contactMessage.textContent = 'Message sent successfully ✅'
+
+         // Remove message after five seconds
+         setTimeout(() =>{
+            contactMessage.textContent = ''
+         }, 5000)
+
+         //clear input field
+         contactForm.reset()
 
       }, () =>{
          // Show error message
